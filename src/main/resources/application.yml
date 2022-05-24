@@ -1,0 +1,5 @@
+auth:
+  secret: H8a*N5g96sA48@D
+  username: username
+  password: password
+  role: admin
