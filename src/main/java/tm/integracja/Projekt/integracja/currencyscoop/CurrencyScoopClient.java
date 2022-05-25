@@ -1,14 +1,19 @@
 package tm.integracja.Projekt.integracja.currencyscoop;
 
+import feign.Param;
 import feign.RequestLine;
-import org.springframework.web.bind.annotation.RequestParam;
 import tm.integracja.Projekt.integracja.currencyscoop.model.HistoricalResponse;
 
 
 public interface CurrencyScoopClient {
 
-    @RequestLine("GET /historical?api_key=e7030b0681415d2697a7f7b751476df0&base=USD&symbols=PLNP&date=2020-04-01")
-    HistoricalResponse getHistoricalCurrencyValue();
+    @RequestLine("GET /historical?api_key={api_key}&base={base}&symbols={symbol}&date={date}")
+    HistoricalResponse getHistoricalCurrencyValue(
+            @Param("api_key") String apiKey,
+            @Param("base") String base,
+            @Param("symbol") String symbol,
+            @Param("date") String date
+    );
 }
 
 

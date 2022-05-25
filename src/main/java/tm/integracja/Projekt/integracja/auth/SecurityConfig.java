@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/auth/***").permitAll()
-                .anyRequest().permitAll()
+                .anyRequest().permitAll() // TODO
                 .and()
                 .addFilter(customAuthenticationFilter)
                 .addFilterBefore(new CustomAuthorizationFilter(userSettings), UsernamePasswordAuthenticationFilter.class)
