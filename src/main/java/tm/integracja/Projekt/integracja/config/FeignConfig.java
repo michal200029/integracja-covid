@@ -7,6 +7,7 @@ import feign.okhttp.OkHttpClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import tm.integracja.Projekt.integracja.currencyscoop.CurrencyScoopClient;
+import tm.integracja.Projekt.integracja.usa.ManufacturingClient;
 
 @Configuration
 public class FeignConfig {
@@ -18,5 +19,14 @@ public class FeignConfig {
                 .encoder(new GsonEncoder())
                 .decoder(new GsonDecoder())
                 .target(CurrencyScoopClient.class, "https://api.currencyscoop.com/v1");
+    }
+
+    @Bean
+    public ManufacturingClient manufacturingClient() {
+        return Feign.builder()
+                .client(new OkHttpClient())
+                .encoder(new GsonEncoder())
+                .decoder(new GsonDecoder())
+                .target(ManufacturingClient.class, "https://api-ts-uranium.datausa.io/tesseract/data.jsonrecords");
     }
 }
