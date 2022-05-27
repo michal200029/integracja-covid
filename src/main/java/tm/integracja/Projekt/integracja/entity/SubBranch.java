@@ -1,23 +1,20 @@
 package tm.integracja.Projekt.integracja.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@RequiredArgsConstructor
+@AllArgsConstructor
 @Entity
 public class SubBranch {
 
     @Id
     private Long id;
 
+    @Column(name = "name")
     private String name;
 
     @ManyToOne

@@ -8,17 +8,16 @@ import tm.integracja.Projekt.integracja.currencyscoop.CurrencyScoopHandler;
 import tm.integracja.Projekt.integracja.rest.model.HistoricalCurrencyValuesRequestBody;
 import tm.integracja.Projekt.integracja.rest.model.HistoricalCurrencyValuesResponse;
 
-@RestController("/currency")
+@RestController
 @AllArgsConstructor
 public class CurrencyController {
 
     private final CurrencyScoopHandler currencyScoopHandler;
 
-    @PostMapping()
+    @PostMapping("/currency")
     public HistoricalCurrencyValuesResponse getHistoricalCurrencyValues(@RequestBody HistoricalCurrencyValuesRequestBody body) {
         return currencyScoopHandler.getHistoricalValues(
                 body.getBase(),
-                body.getSymbol(),
                 body.getStartDate(),
                 body.getEndDate()
         );

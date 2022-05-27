@@ -9,6 +9,6 @@ import tm.integracja.Projekt.integracja.entity.Branch;
 @Repository
 public interface BranchRepository extends JpaRepository<Branch, Long> {
 
-    @Query("SELECT b.api_key FROM branch b where b.name = :name")
+    @Query("SELECT b.apiKey FROM Branch b where b.name = :name")
     String getApiKey(String name);
 }

@@ -6,7 +6,7 @@ CREATE TABLE branch (
 
 CREATE TABLE sub_branch (
     id NUMERIC NOT NULL PRIMARY KEY,
-    name VARCHAR NOT NULL
-    branch_id NUMERIC NOT NULL
+    name VARCHAR NOT NULL,
+    branch_id NUMERIC NOT NULL,
     CONSTRAINT fk__branch_id FOREIGN KEY (branch_id) REFERENCES branch (id)
 );

@@ -20,22 +20,22 @@ public class CurrencyScoopHandler {
     private final static String PLN = "PLN";
     private final static String WALUTY = "Waluty";
 
-    public HistoricalCurrencyValuesResponse getHistoricalValues(String base, String symbol, LocalDate start, LocalDate end) {
+    public HistoricalCurrencyValuesResponse getHistoricalValues(String base, LocalDate start, LocalDate end) {
 
         final String API_KEY = branchRepository.getApiKey(WALUTY);
 
         LocalDate processingDate = start;
-        boolean plusMonth = false;
+        boolean plusMonth = true;
         List<HistoricalResponse> historicalResponseList = new ArrayList<>();
 
-        while (processingDate != end) {
+        while (processingDate.isBefore(end)) {
             String date = String.format("%s-%s-%s",
                     processingDate.getYear(),
                     String.format("%02d", processingDate.getMonthValue()),
                     String.format("%02d", processingDate.getDayOfMonth()));
-            historicalResponseList.add(currencyScoopClient.getHistoricalCurrencyValue(API_KEY, base, symbol, date));
+            historicalResponseList.add(currencyScoopClient.getHistoricalCurrencyValue(API_KEY, base, PLN, date));
 
-            processingDate = plusMonth  ? end.withDayOfMonth(15) : end.withDayOfMonth(1).plusMonths(1);
+            processingDate = plusMonth  ? processingDate.withDayOfMonth(15) : processingDate.withDayOfMonth(1).plusMonths(1);
             plusMonth = !plusMonth;
         }
 

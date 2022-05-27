@@ -7,7 +7,6 @@ import java.time.LocalDate;
 @Value
 public class HistoricalCurrencyValuesRequestBody {
     String base;
-    String symbol;
     LocalDate startDate;
     LocalDate endDate;
 }
