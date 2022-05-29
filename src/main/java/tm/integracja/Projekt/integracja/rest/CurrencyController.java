@@ -19,7 +19,7 @@ public class CurrencyController {
     @PostMapping("/currency")
     public HistoricalCurrencyValuesResponse getHistoricalCurrencyValues(@RequestBody HistoricalCurrencyValuesRequestBody body) {
         return currencyScoopHandler.getHistoricalValues(
-                body.getBase(),
+                body.getBase().toLowerCase(),
                 body.getStartDate(),
                 body.getEndDate()
         );
@@ -28,7 +28,7 @@ public class CurrencyController {
     @PostMapping("/crypto")
     public HistoricalCurrencyValuesResponse getHistoricalCryptoValues(@RequestBody HistoricalCurrencyValuesRequestBody body) {
         return cryptoHandler.getHistoricalCryptoValues(
-                body.getBase(),
+                body.getBase().toLowerCase(),
                 body.getStartDate(),
                 body.getEndDate()
         );
