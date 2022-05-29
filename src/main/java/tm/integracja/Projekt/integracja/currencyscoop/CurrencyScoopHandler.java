@@ -25,7 +25,6 @@ public class CurrencyScoopHandler {
         final String API_KEY = branchRepository.getApiKey(WALUTY);
 
         LocalDate processingDate = start;
-        boolean plusMonth = true;
         List<HistoricalResponse> historicalResponseList = new ArrayList<>();
 
         while (processingDate.isBefore(end)) {
@@ -35,8 +34,7 @@ public class CurrencyScoopHandler {
                     String.format("%02d", processingDate.getDayOfMonth()));
             historicalResponseList.add(currencyScoopClient.getHistoricalCurrencyValue(API_KEY, base, PLN, date));
 
-            processingDate = plusMonth  ? processingDate.withDayOfMonth(15) : processingDate.withDayOfMonth(1).plusMonths(1);
-            plusMonth = !plusMonth;
+            processingDate = processingDate.withDayOfMonth(1).plusMonths(1);
         }
 
         List<CurrencyData> currencyData = new ArrayList<>();
