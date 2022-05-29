@@ -1,15 +1,14 @@
 package tm.integracja.Projekt.integracja.rest.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Value;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.List;
 
 @Value
 public class USAResponse {
 
-    LocalDate date;
-
-    BigDecimal employees;
+    @JsonProperty("data")
+    List<USAData> usaData;
 
 }

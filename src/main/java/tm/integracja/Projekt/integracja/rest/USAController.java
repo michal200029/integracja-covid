@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tm.integracja.Projekt.integracja.rest.model.USARequestBody;
+import tm.integracja.Projekt.integracja.rest.model.USAData;
 import tm.integracja.Projekt.integracja.rest.model.USAResponse;
 import tm.integracja.Projekt.integracja.usa.USAHandler;
 
@@ -19,16 +20,23 @@ public class USAController {
     private final USAHandler manufacturingHandler;
 
     @GetMapping("/manufacturing")
-    public List<USAResponse> readManufacturingEmployment(@RequestBody USARequestBody body) {
+    public USAResponse readManufacturingEmployment(@RequestBody USARequestBody body) {
 
         return manufacturingHandler.getHistoricalManufacturingData(body.getStartDate(), body.getEndDate());
 
     }
 
     @GetMapping("/transportation")
-    public List<USAResponse> readTransportationEmployment(@RequestBody USARequestBody body) {
+    public USAResponse readTransportationEmployment(@RequestBody USARequestBody body) {
 
         return manufacturingHandler.getHistoricalTransportationData(body.getStartDate(), body.getEndDate());
+
+    }
+
+    @GetMapping("/leisure")
+    public USAResponse readLeisureEmployment(@RequestBody USARequestBody body) {
+
+        return manufacturingHandler.getHistoricalLeisureData(body.getStartDate(), body.getEndDate());
 
     }
 
