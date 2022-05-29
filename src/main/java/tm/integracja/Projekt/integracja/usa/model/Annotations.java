@@ -1,6 +1,7 @@
 package tm.integracja.Projekt.integracja.usa.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,17 +11,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Annotations {
 
-    @JsonProperty("source_description")
+    @SerializedName("source_description")
+    @Expose
     public String sourceDescription;
-    @JsonProperty("subtopic")
+    @SerializedName("subtopic")
+    @Expose
     public String subtopic;
-    @JsonProperty("source_name")
+    @SerializedName("source_name")
+    @Expose
     public String sourceName;
-    @JsonProperty("topic")
+    @SerializedName("topic")
+    @Expose
     public String topic;
-    @JsonProperty("dataset_name")
+    @SerializedName("dataset_name")
+    @Expose
     public String datasetName;
-    @JsonProperty("dataset_link")
+    @SerializedName("dataset_link")
+    @Expose
     public String datasetLink;
 
 }

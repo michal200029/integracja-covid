@@ -1,16 +1,21 @@
 package tm.integracja.Projekt.integracja.usa.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class Source {
 
-    @JsonProperty("name")
+    @SerializedName("name")
+    @Expose
     public String name;
-    @JsonProperty("measures")
+    @SerializedName("measures")
+    @Expose
     public List<String> measures = null;
-    @JsonProperty("annotations")
+    @SerializedName("annotations")
+    @Expose
     public Annotations annotations;
+
 
 }
