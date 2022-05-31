@@ -14,21 +14,21 @@ public class USAController {
 
     private final USAHandler manufacturingHandler;
 
-    @GetMapping("/manufacturing")
+    @PostMapping("/manufacturing")
     public USAResponse readManufacturingEmployment(@RequestBody USARequestBody body) {
 
         return manufacturingHandler.getHistoricalManufacturingData(body.getStartDate(), body.getEndDate());
 
     }
 
-    @GetMapping("/transportation")
+    @PostMapping("/transportation")
     public USAResponse readTransportationEmployment(@RequestBody USARequestBody body) {
 
         return manufacturingHandler.getHistoricalTransportationData(body.getStartDate(), body.getEndDate());
 
     }
 
-    @GetMapping("/leisure")
+    @PostMapping("/leisure")
     public USAResponse readLeisureEmployment(@RequestBody USARequestBody body) {
 
         return manufacturingHandler.getHistoricalLeisureData(body.getStartDate(), body.getEndDate());
