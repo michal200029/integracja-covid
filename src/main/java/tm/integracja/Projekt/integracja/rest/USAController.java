@@ -1,20 +1,15 @@
 package tm.integracja.Projekt.integracja.rest;
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tm.integracja.Projekt.integracja.rest.model.USARequestBody;
-import tm.integracja.Projekt.integracja.rest.model.USAData;
 import tm.integracja.Projekt.integracja.rest.model.USAResponse;
 import tm.integracja.Projekt.integracja.usa.USAHandler;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/usa")
 @AllArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class USAController {
 
     private final USAHandler manufacturingHandler;

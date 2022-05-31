@@ -1,6 +1,7 @@
 package tm.integracja.Projekt.integracja.rest;
 
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +12,7 @@ import tm.integracja.Projekt.integracja.rest.model.HistoricalCurrencyValuesRespo
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CurrencyController {
 
     private final CurrencyScoopHandler currencyScoopHandler;
