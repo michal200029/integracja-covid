@@ -3,6 +3,7 @@ package tm.integracja.Projekt.integracja.currencyscoop;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tm.integracja.Projekt.integracja.currencyscoop.model.HistoricalResponse;
+import tm.integracja.Projekt.integracja.raport.ReportGenerator;
 import tm.integracja.Projekt.integracja.repository.BranchRepository;
 import tm.integracja.Projekt.integracja.rest.model.CurrencyData;
 import tm.integracja.Projekt.integracja.rest.model.HistoricalCurrencyValuesResponse;
@@ -17,6 +18,7 @@ public class CurrencyScoopHandler {
 
     private final CurrencyScoopClient currencyScoopClient;
     private final BranchRepository branchRepository;
+    private final ReportGenerator reportGenerator;
     private final static String PLN = "PLN";
     private final static String WALUTY = "Waluty";
 
@@ -37,13 +39,23 @@ public class CurrencyScoopHandler {
             processingDate = processingDate.withDayOfMonth(1).plusMonths(1);
         }
 
+        double minValue = Double.MAX_VALUE;
+        double maxValue = 0;
+        double sum = 0;
         List<CurrencyData> currencyData = new ArrayList<>();
 
         for (final HistoricalResponse hr : historicalResponseList) {
-            currencyData.add(new CurrencyData(
-                    LocalDate.parse(hr.getResponse().getDate()), hr.getResponse().getRates().get(PLN)));
-        }
+            double value = hr.getResponse().getRates().get(PLN);
 
+            sum += value;
+            if (value > maxValue)
+                maxValue = value;
+            if (value < minValue)
+                minValue = value;
+
+            currencyData.add(new CurrencyData(LocalDate.parse(hr.getResponse().getDate()), value));
+        }
+        reportGenerator.generateAndSaveReport(start, end, minValue, maxValue, sum, historicalResponseList.size());
         return new HistoricalCurrencyValuesResponse(base, currencyData);
     }
 
