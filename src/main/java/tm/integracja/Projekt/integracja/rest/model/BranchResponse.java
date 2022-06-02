@@ -2,10 +2,12 @@ package tm.integracja.Projekt.integracja.rest.model;
 
 import lombok.Value;
 
+import java.util.List;
+
 @Value
 public class BranchResponse {
 
-    long id;
     String name;
+    List<String> subbranches;
 
 }

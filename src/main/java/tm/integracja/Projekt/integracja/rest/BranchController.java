@@ -11,7 +11,6 @@ import tm.integracja.Projekt.integracja.repository.SubBranchRepository;
 import tm.integracja.Projekt.integracja.rest.model.BranchResponse;
 import tm.integracja.Projekt.integracja.rest.model.SubBranchResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,19 +27,23 @@ public class BranchController {
 
         return branchRepository.findAll()
                 .stream()
-                .map(b -> {
-                    return new BranchResponse(b.getId(), b.getName());
-                })
+                .map(b -> new BranchResponse(
+                        b.getName(),
+                        b.getSubBranches()
+                                .stream()
+                                .map(SubBranch::getName)
+                                .collect(Collectors.toList())))
                 .collect(Collectors.toList());
-
     }
 
+    @Deprecated
     @GetMapping("/subbranches/{branchId}")
-    public List<String> getSubBranches(@PathVariable long branchId) {
+    public List<SubBranchResponse> getSubBranches(@PathVariable long branchId) {
 
         return subBranchRepository.findByBranchId(branchId)
                 .stream()
-                .map(SubBranch::getName).collect(Collectors.toList());
+                .map(b -> new SubBranchResponse(b.getId(), b.getName()))
+                .collect(Collectors.toList());
 
     }
 }

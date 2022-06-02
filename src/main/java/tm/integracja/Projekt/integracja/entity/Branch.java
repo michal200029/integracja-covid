@@ -24,6 +24,6 @@ public class Branch {
     @Column(name = "api_key")
     private String apiKey;
 
-    @OneToMany(mappedBy = "branch", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "branch", fetch = FetchType.EAGER)
     private Set<SubBranch> subBranches;
 }
