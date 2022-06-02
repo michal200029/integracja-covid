@@ -8,7 +8,7 @@ INSERT INTO sub_branch (id, name, branch_id) VALUES (3, 'GBP', 1);
 
 INSERT INTO sub_branch (id, name, branch_id) VALUES (4, 'BTC', 2);
 INSERT INTO sub_branch (id, name, branch_id) VALUES (5, 'ETH', 2);
-INSERT INTO sub_branch (id, name, branch_id) VALUES (6, 'SOL', 2);
+INSERT INTO sub_branch (id, name, branch_id) VALUES (6, 'LTC', 2);
 
 INSERT INTO sub_branch (id, name, branch_id) VALUES (7, 'Produkcja', 3);
 INSERT INTO sub_branch (id, name, branch_id) VALUES (8, 'Transport', 3);
