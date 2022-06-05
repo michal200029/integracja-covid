@@ -44,14 +44,14 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         String accessToken = JWT.create()
                 .withClaim(USERNAME, userSettings.getUsername())
                 .withClaim(PASSWORD, userSettings.getPassword())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 5 * 60 * 1000))
+                .withExpiresAt(new Date(System.currentTimeMillis() + 60 * 60 * 1000))
                 .withIssuer(request.getRequestURL().toString())
                 .sign(algorithm);
 
         String refreshToken = JWT.create()
                 .withClaim(USERNAME, userSettings.getUsername())
                 .withClaim(PASSWORD, userSettings.getPassword())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 60 * 60 * 1000))
+                .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 60 * 1000))
                 .withIssuer(request.getRequestURL().toString())
                 .sign(algorithm);
 
