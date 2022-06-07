@@ -1,9 +1,21 @@
 version: '3.1'
 
 services:
-
+  app:
+    image: masa1337/projekt_integracja:0.0.1
+    restart: unless-stopped
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SQS.ADDRESS=sqs
+    depends_on:
+      - db
+    ports:
+      - "8080:8080" 
   db:
     image: postgres
+    container_name: db
     restart: unless-stopped
     environment:
       POSTGRES_PASSWORD: postgres
